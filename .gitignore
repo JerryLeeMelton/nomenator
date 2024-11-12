@@ -1,0 +1,34 @@
+# Node modules
+node_modules/
+
+# Yarn cache files
+.yarn/
+.yarnrc.yml
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Electron specific
+/dist/
+release/
+out/
+*.db
+
+# Build artifacts
+build/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Go executable (if built)
+go/file-renamer
+
+# VSCode settings (optional)
+.vscode/

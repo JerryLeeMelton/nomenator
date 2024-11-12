@@ -1,0 +1,14 @@
+{
+  "name": "nomenator",
+  "version": "1.0.0",
+  "description": "Modern file renamer application",
+  "main": "main.js",
+  "author": "Jerry Lee Melton",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.2.0"
+  },
+  "scripts": {
+    "start": "electron ."
+  }
+}
