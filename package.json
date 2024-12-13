@@ -7,7 +7,7 @@
     "dev:renderer": "vite",
     "dev:main": "tsc -w",
     "dev:electron": "wait-on http://localhost:5173 && electron dist/main/main.js",
-    "dev": "concurrently \"yarn dev:renderer\" \"yarn dev:main\" \"yarn dev:electron\""
+    "dev": "cross-env NODE_ENV=development concurrently \"yarn dev:renderer\" \"yarn dev:main\" \"yarn dev:electron\""
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
@@ -15,13 +15,16 @@
     "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
     "electron": "^33.2.1",
     "typescript": "^5.7.2",
     "vite": "^6.0.3",
     "wait-on": "^8.0.1"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0"
   }
 }
