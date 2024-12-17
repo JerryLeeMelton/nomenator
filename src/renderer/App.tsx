@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "./store/hooks"
 import type { RootState } from "./store/store"
 import { setSelectedDirectory } from "./store/appSlice"
 import { fetchFiles } from "./store/fileSlice"
+import { pickDirectoryThunk } from "./store/appSlice"
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -13,7 +14,8 @@ const App: React.FC = () => {
   const filesStatus = useAppSelector((state: RootState) => state.files.status)
 
   const handleSelectDirectory = () => {
-    dispatch(setSelectedDirectory("/path/to/directory"))
+    // dispatch(setSelectedDirectory("/path/to/directory"))
+    dispatch(pickDirectoryThunk())
   }
 
   const handleFetchFiles = () => {

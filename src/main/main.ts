@@ -1,5 +1,7 @@
-import { app, BrowserWindow } from "electron"
+import { app, BrowserWindow, ipcMain, dialog } from "electron"
 import path from "path"
+
+console.log("Main process running (high)")
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -28,4 +30,17 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit()
+})
+
+console.log("Main process running (low)")
+
+ipcMain.handle("pick-directory", async () => {
+  const result = await dialog.showOpenDialog({
+    properties: ["openDirectory"],
+  })
+  if (result.canceled || result.filePaths.length === 0) {
+    return null
+  } else {
+    return result.filePaths[0]
+  }
 })
