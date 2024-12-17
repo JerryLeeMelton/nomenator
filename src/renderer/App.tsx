@@ -4,13 +4,14 @@ import type { RootState } from "./store/store"
 import { setSelectedDirectory } from "./store/appSlice"
 import { fetchFilesThunk } from "./store/fileSlice"
 import { pickDirectoryThunk } from "./store/appSlice"
+import { MainTabs } from "./components/MainTabs"
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
 
   const tabs = ["choose", "rename"]
 
-  const [activeTab, setActiveTab] = useState<string | null>("choose")
+  const [activeTab, setActiveTab] = useState<string>("choose")
 
   const selectedDirectory = useAppSelector(
     (state: RootState) => state.app.selectedDirectory
@@ -33,20 +34,7 @@ const App: React.FC = () => {
   return (
     <div className="w-full h-full flex flex-col">
       {/* Top Section: Tabs */}
-      <div className="bg-gray-200 p-2 flex space-x-4" id="tabs">
-        {tabs.map((tab) => {
-          return (
-            <button
-              className={`px-4 py-2 rounded ${
-                activeTab === tab ? "bg-white" : "bg-transparent"
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </button>
-          )
-        })}
-      </div>
+      <MainTabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* Main Content Area */}
       <div className="flex-1 p-4 overflow-auto">
