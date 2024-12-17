@@ -4,6 +4,7 @@ import App from "./App"
 import { Provider } from "react-redux"
 import { store } from "./store/store"
 import "../styles/global.css"
+import { TitleBar } from "./components/TitleBar/TitleBar"
 
 const container = document.getElementById("root")
 if (!container) {
@@ -13,6 +14,7 @@ if (!container) {
 const root = createRoot(container)
 root.render(
   <Provider store={store}>
+    <TitleBar />
     <App />
   </Provider>
 )

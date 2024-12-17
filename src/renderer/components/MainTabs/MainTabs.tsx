@@ -20,6 +20,7 @@ export const MainTabs: React.FC<MainTabsProps> = ({
               activeTab === tab ? "bg-white" : "bg-transparent"
             }`}
             onClick={() => setActiveTab(tab)}
+            key={`main-tab-${tab}`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>

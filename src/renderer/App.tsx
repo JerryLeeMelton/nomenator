@@ -4,7 +4,7 @@ import type { RootState } from "./store/store"
 import { setSelectedDirectory } from "./store/appSlice"
 import { fetchFilesThunk } from "./store/fileSlice"
 import { pickDirectoryThunk } from "./store/appSlice"
-import { MainTabs } from "./components/MainTabs"
+import { MainTabs } from "./components/MainTabs/MainTabs"
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()

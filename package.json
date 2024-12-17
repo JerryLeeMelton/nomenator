@@ -26,6 +26,8 @@
     "wait-on": "^8.0.1"
   },
   "dependencies": {
+    "@mdi/js": "^7.4.47",
+    "@mdi/react": "^1.6.1",
     "@reduxjs/toolkit": "^2.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
