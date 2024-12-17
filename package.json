@@ -1,6 +1,7 @@
 {
   "name": "nomenator",
   "version": "1.0.0",
+  "description": "Nomenator is a GUI tool for naming files.",
   "main": "dist/main/main.js",
   "license": "MIT",
   "scripts": {
