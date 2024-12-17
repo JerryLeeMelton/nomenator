@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain, dialog } from "electron"
 import path from "path"
+import fs from "fs/promises"
 
 console.log("Main process running (high)")
 
@@ -42,5 +43,19 @@ ipcMain.handle("pick-directory", async () => {
     return null
   } else {
     return result.filePaths[0]
+  }
+})
+
+ipcMain.handle("list-files", async (event, directory: string) => {
+  try {
+    const files = await fs.readdir(directory, { withFileTypes: true })
+    // Return file names and indicate if they are directories
+    return files.map((file) => ({
+      name: file.name,
+      isDirectory: file.isDirectory(),
+    }))
+  } catch (error) {
+    console.error("Error reading directory:", error)
+    return []
   }
 })

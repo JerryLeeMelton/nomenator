@@ -2,7 +2,7 @@ import React from "react"
 import { useAppDispatch, useAppSelector } from "./store/hooks"
 import type { RootState } from "./store/store"
 import { setSelectedDirectory } from "./store/appSlice"
-import { fetchFiles } from "./store/fileSlice"
+import { fetchFilesThunk } from "./store/fileSlice"
 import { pickDirectoryThunk } from "./store/appSlice"
 
 const App: React.FC = () => {
@@ -14,13 +14,12 @@ const App: React.FC = () => {
   const filesStatus = useAppSelector((state: RootState) => state.files.status)
 
   const handleSelectDirectory = () => {
-    // dispatch(setSelectedDirectory("/path/to/directory"))
     dispatch(pickDirectoryThunk())
   }
 
   const handleFetchFiles = () => {
     if (selectedDirectory) {
-      dispatch(fetchFiles(selectedDirectory))
+      dispatch(fetchFilesThunk(selectedDirectory))
     } else {
       alert("Please select a directory first!")
     }
@@ -30,20 +29,25 @@ const App: React.FC = () => {
     <div style={{ fontFamily: "sans-serif", padding: "1rem" }}>
       <h1>Welcome to Nomenator</h1>
       <p>Selected Directory: {selectedDirectory ?? "None"}</p>
-      <button onClick={handleSelectDirectory}>Select Directory</button>
+      <button onClick={handleSelectDirectory}>Pick a Directory</button>
 
-      <div style={{ marginTop: "1rem" }}>
-        <h2>Files</h2>
-        <button onClick={handleFetchFiles}>Fetch Files</button>
-        <p>Status: {filesStatus}</p>
-        {filesStatus === "succeeded" && (
-          <ul>
-            {files.map((file) => (
-              <li key={file}>{file}</li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {selectedDirectory && (
+        <div style={{ marginTop: "1rem" }}>
+          <h2>Files in {selectedDirectory}</h2>
+          <button onClick={handleFetchFiles}>Fetch Files</button>
+          <p>Status: {filesStatus}</p>
+          {filesStatus === "succeeded" && (
+            <ul>
+              {files.map((file) => (
+                <li key={file.name}>
+                  {file.name} {file.isDirectory ? "(Directory)" : "(File)"}
+                </li>
+              ))}
+            </ul>
+          )}
+          {filesStatus === "failed" && <p>Error fetching files.</p>}
+        </div>
+      )}
     </div>
   )
 }
