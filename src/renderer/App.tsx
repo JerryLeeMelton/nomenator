@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useAppDispatch, useAppSelector } from "./store/hooks"
 import type { RootState } from "./store/store"
 import { setSelectedDirectory } from "./store/appSlice"
@@ -7,6 +7,11 @@ import { pickDirectoryThunk } from "./store/appSlice"
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
+
+  const tabs = ["choose", "rename"]
+
+  const [activeTab, setActiveTab] = useState<string | null>("choose")
+
   const selectedDirectory = useAppSelector(
     (state: RootState) => state.app.selectedDirectory
   )
@@ -17,13 +22,94 @@ const App: React.FC = () => {
     dispatch(pickDirectoryThunk())
   }
 
-  const handleFetchFiles = () => {
+  const handleListFiles = () => {
     if (selectedDirectory) {
       dispatch(fetchFilesThunk(selectedDirectory))
     } else {
       alert("Please select a directory first!")
     }
   }
+
+  return (
+    <div className="w-full h-full flex flex-col">
+      {/* Top Section: Tabs */}
+      <div className="bg-gray-200 p-2 flex space-x-4" id="tabs">
+        {tabs.map((tab) => {
+          return (
+            <button
+              className={`px-4 py-2 rounded ${
+                activeTab === tab ? "bg-white" : "bg-transparent"
+              }`}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Main Content Area */}
+      <div className="flex-1 p-4 overflow-auto">
+        {activeTab === "choose" && (
+          <div>
+            <h1 className="text-xl font-bold mb-4">Select a Directory</h1>
+            <p>Selected Directory: {selectedDirectory ?? "None"}</p>
+            <button
+              className="px-4 py-2 mt-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              onClick={handleSelectDirectory}
+            >
+              Pick a Directory
+            </button>
+          </div>
+        )}
+
+        {activeTab === "choose" && (
+          <div>
+            <h1 className="text-xl font-bold mb-4">Files</h1>
+            {selectedDirectory ? (
+              <div>
+                <p>Current Directory: {selectedDirectory}</p>
+                <button
+                  className="px-4 py-2 mt-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  onClick={handleListFiles}
+                >
+                  Fetch Files
+                </button>
+                <p className="mt-4">Status: {filesStatus}</p>
+                {filesStatus === "succeeded" && (
+                  <ul className="list-disc ml-6 mt-2">
+                    {files.map((file) => (
+                      <li key={file.name}>
+                        {file.name}{" "}
+                        {file.isDirectory ? "(Directory)" : "(File)"}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {filesStatus === "failed" && (
+                  <p className="text-red-500">Error fetching files.</p>
+                )}
+              </div>
+            ) : (
+              <p>
+                No directory selected. Go to the Directory tab to select one.
+              </p>
+            )}
+          </div>
+        )}
+
+        {activeTab === "rename" && (
+          <div>
+            <h1 className="text-xl font-bold mb-4">Rename Operations</h1>
+            <p>
+              This tab will be for configuring and previewing renaming rules.
+            </p>
+            {/* Future UI for rename operations goes here */}
+          </div>
+        )}
+      </div>
+    </div>
+  )
 
   return (
     <div style={{ fontFamily: "sans-serif", padding: "1rem" }}>
@@ -34,7 +120,7 @@ const App: React.FC = () => {
       {selectedDirectory && (
         <div style={{ marginTop: "1rem" }}>
           <h2>Files in {selectedDirectory}</h2>
-          <button onClick={handleFetchFiles}>Fetch Files</button>
+          <button onClick={handleListFiles}>Fetch Files</button>
           <p>Status: {filesStatus}</p>
           {filesStatus === "succeeded" && (
             <ul>
