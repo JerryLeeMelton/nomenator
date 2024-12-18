@@ -98,32 +98,6 @@ const App: React.FC = () => {
       </div>
     </div>
   )
-
-  return (
-    <div style={{ fontFamily: "sans-serif", padding: "1rem" }}>
-      <h1>Welcome to Nomenator</h1>
-      <p>Selected Directory: {selectedDirectory ?? "None"}</p>
-      <button onClick={handleSelectDirectory}>Pick a Directory</button>
-
-      {selectedDirectory && (
-        <div style={{ marginTop: "1rem" }}>
-          <h2>Files in {selectedDirectory}</h2>
-          <button onClick={handleListFiles}>Fetch Files</button>
-          <p>Status: {filesStatus}</p>
-          {filesStatus === "succeeded" && (
-            <ul>
-              {files.map((file) => (
-                <li key={file.name}>
-                  {file.name} {file.isDirectory ? "(Directory)" : "(File)"}
-                </li>
-              ))}
-            </ul>
-          )}
-          {filesStatus === "failed" && <p>Error fetching files.</p>}
-        </div>
-      )}
-    </div>
-  )
 }
 
 export default App
