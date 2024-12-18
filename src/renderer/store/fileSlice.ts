@@ -10,12 +10,14 @@ interface FilesState {
   items: FileItem[]
   status: "idle" | "loading" | "succeeded" | "failed"
   error: string | null
+  selectedFiles: string[]
 }
 
 const initialState: FilesState = {
   items: [],
   status: "idle",
   error: null,
+  selectedFiles: [],
 }
 
 export const fetchFilesThunk = createAsyncThunk(
@@ -29,7 +31,21 @@ export const fetchFilesThunk = createAsyncThunk(
 const filesSlice = createSlice({
   name: "files",
   initialState,
-  reducers: {},
+  reducers: {
+    toggleFileSelection: (state, action: PayloadAction<string>) => {
+      const fileName = action.payload
+      if (state.selectedFiles.includes(fileName)) {
+        state.selectedFiles = state.selectedFiles.filter(
+          (file) => file !== fileName
+        )
+      } else {
+        state.selectedFiles.push(fileName)
+      }
+    },
+    clearSelectedFiles: (state) => {
+      state.selectedFiles = []
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchFilesThunk.pending, (state) => {
@@ -41,6 +57,7 @@ const filesSlice = createSlice({
         (state, action: PayloadAction<FileItem[]>) => {
           state.status = "succeeded"
           state.items = action.payload
+          state.selectedFiles = []
         }
       )
       .addCase(fetchFilesThunk.rejected, (state, action) => {
@@ -50,4 +67,5 @@ const filesSlice = createSlice({
   },
 })
 
+export const { toggleFileSelection, clearSelectedFiles } = filesSlice.actions
 export default filesSlice.reducer
