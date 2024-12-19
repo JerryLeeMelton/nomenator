@@ -9,6 +9,7 @@ import { MainTabs } from "./components/MainTabs/MainTabs"
 import { ChooseTab } from "./components/ChooseTab/ChooseTab"
 import { RenameTab } from "./components/RenameTab/RenameTab"
 import { SelectedFilesTable } from "./components/SelectedFilesTable/SelectedFilesTable"
+import { TitleBar } from "./components/TitleBar/TitleBar"
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -43,6 +44,7 @@ const App: React.FC = () => {
 
   return (
     <div className="h-full flex flex-col">
+      <TitleBar />
       {/* Top Half */}
       <div className="h-1/2 flex flex-col">
         <MainTabs

@@ -4,10 +4,14 @@ import fs from "fs/promises"
 
 console.log("Main process running (high)")
 
-function createWindow() {
-  const win = new BrowserWindow({
+let win: BrowserWindow | null = null
+
+const createWindow = () => {
+  win = new BrowserWindow({
     width: 1200,
     height: 800,
+    frame: false,
+    titleBarStyle: "hidden",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
@@ -43,6 +47,27 @@ ipcMain.handle("pick-directory", async () => {
     return null
   } else {
     return result.filePaths[0]
+  }
+})
+
+// IPC Handlers for window controls
+ipcMain.handle("window-minimize", () => {
+  if (win) {
+    win.minimize()
+  }
+})
+ipcMain.handle("window-toggle-maximize", () => {
+  if (win) {
+    if (win.isMaximized()) {
+      win.unmaximize()
+    } else {
+      win.maximize()
+    }
+  }
+})
+ipcMain.handle("window-close", () => {
+  if (win) {
+    win.close()
   }
 })
 

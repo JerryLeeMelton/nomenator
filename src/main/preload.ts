@@ -1,8 +1,6 @@
 import { contextBridge, ipcRenderer } from "electron"
 import { FileItem } from "../renderer/store/fileSlice"
 
-console.log("Preload script running")
-
 contextBridge.exposeInMainWorld("api", {
   pickDirectory: async () => {
     const directory = await ipcRenderer.invoke("pick-directory")
@@ -12,4 +10,8 @@ contextBridge.exposeInMainWorld("api", {
     const files = await ipcRenderer.invoke("list-files", directory)
     return files as FileItem[]
   },
+  // Window control APIs
+  minimizeWindow: () => ipcRenderer.invoke("window-minimize"),
+  toggleMaximizeWindow: () => ipcRenderer.invoke("window-toggle-maximize"),
+  closeWindow: () => ipcRenderer.invoke("window-close"),
 })

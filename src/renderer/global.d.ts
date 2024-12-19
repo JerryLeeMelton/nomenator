@@ -2,7 +2,9 @@
 export interface NomenatorAPI {
   pickDirectory: () => Promise<string | null>
   listFiles: (directory: string) => Promise<FileItem[]>
-  // add more IPC-exposed methods as you implement them
+  minimizeWindow: () => Promise<void>
+  toggleMaximizeWindow: () => Promise<void>
+  closeWindow: () => Promise<void>
 }
 
 declare global {

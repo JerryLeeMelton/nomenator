@@ -6,33 +6,35 @@ import {
   mdiWindowRestore,
 } from "@mdi/js"
 import Icon from "@mdi/react"
+import "./TitleBar.css"
 
 export const TitleBar: React.FC = () => {
   const [isMaximized, setIsMaximized] = React.useState(false)
 
-  // Event Handlers
-  // const minimizeWindow = () => window.api?.minimizeWindow()
-  // const toggleMaximizeWindow = () => {
-  //   window.api?.toggleMaximizeWindow()
-  //   setIsMaximized((prev) => !prev)
-  // }
-  // const closeWindow = () => window.api?.closeWindow()
+  const minimizeWindow = () => {
+    window.api?.minimizeWindow()
+  }
 
-  // Dummy Event Handlers
-  const minimizeWindow = () => console.log("TitleBar.tsx  :  minimizeWindow")
-  const toggleMaximizeWindow = () =>
-    console.log("TitleBar.tsx  :  toggleMaximizeWindow")
-  const closeWindow = () => console.log("TitleBar.tsx  :  closeWindow")
+  const toggleMaximizeWindow = async () => {
+    await window.api?.toggleMaximizeWindow()
+    // After toggling, you might want to check if window is actually maximized.
+    // You could implement ipc calls to check state, or just toggle the UI state optimistically.
+    setIsMaximized((prev) => !prev)
+  }
+
+  const closeWindow = () => {
+    window.api?.closeWindow()
+  }
 
   return (
-    <header className="w-full h-10 flex items-center justify-between bg-gray-800 text-white select-none">
+    <header className="title-bar w-full h-10 flex items-center justify-between bg-gray-800 text-white select-none">
       {/* App Logo and Title */}
       <div className="flex items-center pl-3">
         <span className="font-bold text-lg tracking-wide">Nomenator</span>
       </div>
 
       {/* Window Controls */}
-      <div className="flex">
+      <div className="title-bar-controls-container flex">
         <button
           className="w-10 h-10 flex items-center justify-center hover:bg-gray-700"
           onClick={minimizeWindow}
