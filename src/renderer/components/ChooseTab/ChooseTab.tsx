@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { RootState } from "../../store/store"
 import { pickDirectoryThunk, setSelectedDirectory } from "../../store/appSlice"
@@ -32,6 +32,12 @@ export const ChooseTab: React.FC = () => {
     dispatch(toggleFileSelection(fileName))
   }
 
+  useEffect(() => {
+    if (selectedDirectory) {
+      dispatch(fetchFilesThunk(selectedDirectory))
+    }
+  }, [selectedDirectory, dispatch])
+
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Select a Directory</h1>
@@ -47,14 +53,12 @@ export const ChooseTab: React.FC = () => {
         <h1 className="text-xl font-bold mb-4">Files</h1>
         {selectedDirectory ? (
           <div>
-            <p>Current Directory: {selectedDirectory}</p>
             <button
               className="px-4 py-2 mt-2 bg-blue-500 text-white rounded hover:bg-blue-600"
               onClick={handleListFiles}
             >
-              Fetch Files
+              Refresh
             </button>
-            <p className="mt-4">Status: {filesStatus}</p>
             {filesStatus === "succeeded" && (
               <ul className="list-none mt-2">
                 {files.map((file) => (
