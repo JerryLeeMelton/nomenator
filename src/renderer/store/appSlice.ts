@@ -9,7 +9,7 @@ const initialState: AppState = {
   selectedDirectory: null,
 }
 
-// Thunk to pick a directory
+// Thunk to choose a directory
 export const pickDirectoryThunk = createAsyncThunk(
   "app/pickDirectory",
   async () => {
