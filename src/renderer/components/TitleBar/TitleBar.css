@@ -5,3 +5,9 @@
 .title-bar-controls-container {
   -webkit-app-region: no-drag;
 }
+
+.test-button {
+  -webkit-app-region: no-drag;
+  pointer-events: all;
+  cursor: pointer;
+}

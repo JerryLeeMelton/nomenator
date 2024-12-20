@@ -1,4 +1,7 @@
 import React from "react"
+import { useAppSelector } from "../../store/hooks"
+import { RootState } from "../../store/store"
+import { useAppDispatch } from "../../store/hooks"
 
 interface MainTabsProps {
   tabs: string[]
@@ -11,6 +14,16 @@ export const MainTabs: React.FC<MainTabsProps> = ({
   activeTab,
   setActiveTab,
 }) => {
+  const dispatch = useAppDispatch()
+  const selectedRuleId = useAppSelector(
+    (state: RootState) => state.rename.selectedRuleId
+  )
+
+  const handleTestButton = () => {
+    console.log("Test Button Clicked")
+    console.log("selectedRuleId == ", selectedRuleId)
+  }
+
   return (
     <div className="bg-gray-200 p-2 flex space-x-4" id="tabs">
       {tabs.map((tab) => {
@@ -26,6 +39,12 @@ export const MainTabs: React.FC<MainTabsProps> = ({
           </button>
         )
       })}
+
+      {/* <div className="flex flex-row">
+        <button className="test-buttonflex flex-row" onClick={handleTestButton}>
+          Test Button
+        </button>
+      </div> */}
     </div>
   )
 }

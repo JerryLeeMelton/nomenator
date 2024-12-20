@@ -14,10 +14,12 @@ export interface RenameRule {
 
 interface RenameState {
   rules: RenameRule[]
+  selectedRuleId: string | null
 }
 
 const initialState: RenameState = {
   rules: [],
+  selectedRuleId: null,
 }
 
 const renameSlice = createSlice({
@@ -60,10 +62,20 @@ const renameSlice = createSlice({
     clearRules: (state) => {
       state.rules = []
     },
+
+    setSelectedRuleId: (state, action: PayloadAction<string | null>) => {
+      state.selectedRuleId = action.payload
+    },
   },
 })
 
-export const { addRule, removeRule, updateRule, reorderRules, clearRules } =
-  renameSlice.actions
+export const {
+  addRule,
+  removeRule,
+  updateRule,
+  reorderRules,
+  clearRules,
+  setSelectedRuleId,
+} = renameSlice.actions
 
 export default renameSlice.reducer
