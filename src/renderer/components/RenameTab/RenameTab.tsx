@@ -6,6 +6,7 @@ import {
   RenameRule,
   setSelectedRuleId,
   reorderRules,
+  removeRule,
 } from "../../store/renameSlice"
 import { useAppSelector } from "../../store/hooks"
 import { RootState } from "../../store/store"
@@ -58,6 +59,26 @@ export const RenameTab: React.FC = () => {
     dispatch(setSelectedRuleId(ruleId))
   }
 
+  const handleDeleteRule = (ruleId: string | null) => {
+    if (ruleId === null) return
+
+    let newSelectedRuleId = null
+    const index = rules.findIndex((rule) => rule.id === ruleId)
+
+    if (rules.length === 1) {
+      newSelectedRuleId = null
+    } else if (index === 0) {
+      newSelectedRuleId = rules[1].id
+    } else if (index === rules.length - 1) {
+      newSelectedRuleId = rules[index - 1].id
+    } else {
+      newSelectedRuleId = rules[index + 1].id
+    }
+
+    dispatch(removeRule(ruleId))
+    dispatch(setSelectedRuleId(newSelectedRuleId))
+  }
+
   return (
     <div className="rename-tab flex flex-row">
       <div className="bg-red-600 min-w-24 min-h-16">
@@ -106,6 +127,16 @@ export const RenameTab: React.FC = () => {
             <span className="material-icons">
               <Icon path={mdiChevronUp} size={1} />
             </span>
+          </button>
+        </div>
+        <div className="rename-rule-delete-container">
+          <button
+            className="rename-rule-delete-button"
+            onClick={() => {
+              handleDeleteRule(selectedRuleId)
+            }}
+          >
+            Delete
           </button>
         </div>
       </div>
