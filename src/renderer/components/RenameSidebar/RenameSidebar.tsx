@@ -112,9 +112,9 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
   }, [dispatch, rules, selectedRuleId])
 
   return (
-    <div className="bg-red-600 min-w-24 min-h-16">
-      {/* A dropdown for adding an operation */}
-      <div className="rename-operations-picker-container">
+    <div className="flex flex-col h-full p-4">
+      {/* Dropdown for adding a rename operation */}
+      <div className="mb-4">
         <RenameOperationsMenu
           width={200}
           height={40}
@@ -125,42 +125,47 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
         />
       </div>
 
-      {/* List of added rename operations */}
-      <div className="rename-operations-list-container">
-        {rules.map((rule) => (
-          <div
-            key={rule.id}
-            className={`rename-operations-list-item ${
-              selectedRuleId === rule.id ? "selected-rule" : ""
-            }`}
-            onClick={() => handleSelectRule(rule.id)}
-          >
-            {rule.id}
-          </div>
-        ))}
+      {/* Rules List */}
+      <div className="flex-1 overflow-y-auto">
+        <ul className="space-y-1">
+          {rules.map((rule) => {
+            const isSelected = rule.id === selectedRuleId
+            return (
+              <li
+                key={rule.id}
+                onClick={() => handleSelectRule(rule.id)}
+                className={`cursor-pointer px-2 py-1 rounded transition-colors
+                  ${
+                    isSelected
+                      ? "bg-blue-500 text-white"
+                      : "hover:bg-gray-200 bg-gray-100 text-gray-800"
+                  }
+                `}
+              >
+                {rule.type.toUpperCase()} / ID: {rule.id}
+              </li>
+            )
+          })}
+        </ul>
       </div>
 
-      {/* Reorder Buttons */}
-      <div className="rename-rule-reorder-container flex flex-row">
+      {/* Reorder & Delete Buttons */}
+      <div className="mt-4 flex items-center space-x-2">
         <button
-          className="rename-rule-reorder-button flex flex-row"
-          onClick={() => handleReorderRules("down")}
-        >
-          <Icon path={mdiChevronDown} size={1} />
-        </button>
-        <button
-          className="rename-rule-reorder-button flex flex-row"
           onClick={() => handleReorderRules("up")}
+          className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded transition-colors"
         >
-          <Icon path={mdiChevronUp} size={1} />
+          <Icon path={mdiChevronUp} size={0.8} />
         </button>
-      </div>
-
-      {/* Delete Button */}
-      <div className="rename-rule-delete-container">
         <button
-          className="rename-rule-delete-button"
+          onClick={() => handleReorderRules("down")}
+          className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded transition-colors"
+        >
+          <Icon path={mdiChevronDown} size={0.8} />
+        </button>
+        <button
           onClick={handleDeleteRule}
+          className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition-colors ml-auto"
         >
           Delete
         </button>

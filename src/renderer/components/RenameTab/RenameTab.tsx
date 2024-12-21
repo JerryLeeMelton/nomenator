@@ -13,12 +13,14 @@ export const RenameTab: React.FC = () => {
   )
 
   return (
-    <div className="rename-tab flex flex-row">
-      {/* Left Pane: Sidebar */}
-      <RenameSidebar />
+    <div className="flex w-full h-full">
+      {/* Left Sidebar */}
+      <div className="w-64 bg-gray-100 border-r border-gray-300">
+        <RenameSidebar />
+      </div>
 
-      {/* Right Pane: Detailed Rule Options */}
-      <div className="bg-blue-600 w-full min-h-16">
+      {/* Main Rename Options Area (Right) */}
+      <div className="flex-1 bg-white p-4">
         <RenameRuleOptions renameRuleID={selectedRuleId} />
       </div>
     </div>
