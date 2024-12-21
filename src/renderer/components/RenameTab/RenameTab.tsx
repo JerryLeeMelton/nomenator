@@ -16,6 +16,10 @@ import "./RenameTab.css"
 import { RenameRuleOptions } from "../RenamePanel/RenameRuleOptions"
 import { mdiChevronUp, mdiChevronDown } from "@mdi/js"
 import Icon from "@mdi/react"
+import {
+  RenameOperationsMenu,
+  RenameOperationMenuOption,
+} from "../UIComponents/RenameOperationsMenu/RenameOperationsMenu"
 
 export const RenameTab: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -23,6 +27,23 @@ export const RenameTab: React.FC = () => {
   const selectedRuleId = useAppSelector(
     (state: RootState) => state.rename.selectedRuleId
   )
+
+  const renameOperations: RenameOperationMenuOption[] = [
+    { key: "insert", label: "Insert" },
+    { key: "replace", label: "Replace" },
+    { key: "changeCase", label: "Change Case" },
+    { key: "truncate", label: "Truncate" },
+  ]
+
+  const handleSelectOperation = (option: RenameOperationMenuOption) => {
+    const newRule: RenameRule = {
+      id: uuidv4(),
+      type: option.key as "insert" | "replace" | "changeCase" | "truncate",
+      options: {},
+    }
+    dispatch(addRule(newRule))
+    dispatch(setSelectedRuleId(newRule.id))
+  }
 
   const handleAddRule = () => {
     // Add a default rule, e.g., an "insert" rule
@@ -83,14 +104,14 @@ export const RenameTab: React.FC = () => {
     <div className="rename-tab flex flex-row">
       <div className="bg-red-600 min-w-24 min-h-16">
         <div className="rename-operations-picker-container">
-          <button className="rename-operations-picker-button">
-            <span
-              className="rename-operations-picker-button-text"
-              onClick={handleAddRule}
-            >
-              Add An Operation
-            </span>
-          </button>
+          <RenameOperationsMenu
+            width={200}
+            height={40}
+            headerLabel="Add Rename Operation"
+            optionsList={renameOperations}
+            onSelect={handleSelectOperation}
+            disabled={false}
+          />
         </div>
         <div className="rename-operations-list-container">
           {rules.map((rule) => (
