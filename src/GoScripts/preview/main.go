@@ -1,4 +1,3 @@
-// file: src/GoScripts/preview.go
 package main
 
 import (

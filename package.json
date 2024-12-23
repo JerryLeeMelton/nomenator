@@ -8,7 +8,8 @@
     "dev:renderer": "vite",
     "dev:main": "tsc -w",
     "dev:electron": "wait-on http://localhost:5173 && electron dist/main/main.js",
-    "dev": "cross-env NODE_ENV=development concurrently \"yarn dev:renderer\" \"yarn dev:main\" \"yarn dev:electron\""
+    "dev": "cross-env NODE_ENV=development concurrently \"yarn dev:renderer\" \"yarn dev:main\" \"yarn dev:electron\"",
+    "build": "electron-builder"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
@@ -19,6 +20,7 @@
     "concurrently": "^9.1.0",
     "cross-env": "^7.0.3",
     "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2",
@@ -33,5 +35,20 @@
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "uuid": "^11.0.3"
+  },
+  "build": {
+    "appId": "com.mycompany.myapp",
+    "productName": "Nomenator",
+    "files": [
+      "dist/**/*",
+      "GoBinaries/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "GoBinaries",
+        "to": "GoBinaries"
+      }
+    ]
   }
 }

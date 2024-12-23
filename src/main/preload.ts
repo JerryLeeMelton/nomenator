@@ -10,6 +10,8 @@ contextBridge.exposeInMainWorld("api", {
     const files = await ipcRenderer.invoke("list-files", directory)
     return files as FileItem[]
   },
+  runPreview: (payload: any) => ipcRenderer.invoke("run-preview", payload),
+  runRename: (payload: any) => ipcRenderer.invoke("run-rename", payload),
   // Window control APIs
   minimizeWindow: () => ipcRenderer.invoke("window-minimize"),
   toggleMaximizeWindow: () => ipcRenderer.invoke("window-toggle-maximize"),

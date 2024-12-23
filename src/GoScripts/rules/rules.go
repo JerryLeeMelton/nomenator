@@ -1,4 +1,3 @@
-// file: src/GoScripts/rules/logic.go
 package rules
 
 import (
@@ -7,7 +6,6 @@ import (
 	"nomenator-go/common"
 )
 
-// ApplyRulesToFilename runs all rules on the original filename
 func ApplyRulesToFilename(original string, rules []common.RenameRule) string {
 	newName := original
 	for _, rule := range rules {

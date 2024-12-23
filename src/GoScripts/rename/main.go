@@ -1,4 +1,3 @@
-// file: src/GoScripts/rename.go
 package main
 
 import (

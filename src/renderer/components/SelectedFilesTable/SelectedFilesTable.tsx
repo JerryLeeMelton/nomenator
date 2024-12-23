@@ -6,6 +6,9 @@ export const SelectedFilesTable: React.FC = () => {
   const selectedFiles = useAppSelector(
     (state: RootState) => state.files.selectedFiles
   )
+  const previewResult = useAppSelector(
+    (state: RootState) => state.rename.previewResult
+  )
 
   if (selectedFiles.length === 0) {
     return <p>No files selected.</p>
@@ -22,12 +25,20 @@ export const SelectedFilesTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {selectedFiles.map((fileName) => (
-            <tr key={fileName} className="border-b border-gray-200">
-              <td className="p-2">{fileName}</td>
-              <td className="p-2 text-gray-600">{fileName}</td>
-            </tr>
-          ))}
+          {selectedFiles.map((fileName) => {
+            // see if there's a preview for this file
+            const foundPreview = previewResult.find(
+              (pr) => pr.originalName === fileName
+            )
+            const newName = foundPreview?.newName || fileName
+
+            return (
+              <tr key={fileName} className="border-b border-gray-200">
+                <td className="p-2">{fileName}</td>
+                <td className="p-2 text-gray-600">{newName}</td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
     </div>

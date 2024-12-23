@@ -1,4 +1,3 @@
-// src/renderer/components/RenameTab/RenameSidebar.tsx
 import React, { useCallback } from "react"
 import { v4 as uuidv4 } from "uuid"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
@@ -10,6 +9,7 @@ import {
   reorderRules,
   setSelectedRuleId,
   RenameRule,
+  applyRenameThunk,
 } from "../../store/renameSlice"
 
 import { mdiChevronUp, mdiChevronDown } from "@mdi/js"
@@ -111,6 +111,18 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
     dispatch(setSelectedRuleId(newSelectedRuleId))
   }, [dispatch, rules, selectedRuleId])
 
+  const handleApplyRename = () => {
+    dispatch(applyRenameThunk())
+      .unwrap()
+      .then((results) => {
+        console.log("Rename results: ", results)
+        // Optionally re-fetch file list or show success UI
+      })
+      .catch((err) => {
+        console.error("Rename error: ", err)
+      })
+  }
+
   return (
     <div className="flex flex-col h-full p-4">
       {/* Dropdown for adding a rename operation */}
@@ -168,6 +180,12 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
           className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition-colors ml-auto"
         >
           Delete
+        </button>
+        <button
+          className="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded mt-4"
+          onClick={handleApplyRename}
+        >
+          Apply Rename
         </button>
       </div>
     </div>

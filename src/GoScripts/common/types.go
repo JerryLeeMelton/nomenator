@@ -19,6 +19,6 @@ type RenameRequest struct {
 type RenameResult struct {
 	OriginalName string `json:"originalName"`
 	NewName      string `json:"newName"`
-	Status       string `json:"status"` // "success" or "error"
+	Status       string `json:"status"`
 	ErrorMsg     string `json:"errorMsg,omitempty"`
 }
