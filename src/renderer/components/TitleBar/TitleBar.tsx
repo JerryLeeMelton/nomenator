@@ -27,7 +27,7 @@ export const TitleBar: React.FC = () => {
   }
 
   return (
-    <header className="title-bar w-full h-10 flex items-center justify-between bg-gray-800 text-white select-none">
+    <header className="title-bar w-full h-10 flex items-center justify-between text-white select-none">
       {/* App Logo and Title */}
       <div className="flex items-center pl-3">
         <span className="font-bold text-lg tracking-wide">Nomenator</span>
@@ -51,7 +51,7 @@ export const TitleBar: React.FC = () => {
           />
         </button>
         <button
-          className="w-10 h-10 flex items-center justify-center hover:bg-red-600"
+          className="title-bar-close-button w-10 h-10 flex items-center justify-center"
           onClick={closeWindow}
         >
           <Icon path={mdiClose} size={0.8} />

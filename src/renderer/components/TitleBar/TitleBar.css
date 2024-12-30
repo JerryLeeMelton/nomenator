@@ -5,6 +5,7 @@
   left: 0;
   width: 100%;
   height: var(--title-bar-height);
+  background-color: var(--blue-darker);
 }
 
 .title-bar-controls-container {
@@ -15,4 +16,11 @@
   -webkit-app-region: no-drag;
   pointer-events: all;
   cursor: pointer;
+}
+
+.title-bar-controls-container button:hover {
+  background-color: var(--blue-darkest);
+}
+.title-bar-controls-container button.title-bar-close-button:hover {
+  background-color: var(--red-primary);
 }

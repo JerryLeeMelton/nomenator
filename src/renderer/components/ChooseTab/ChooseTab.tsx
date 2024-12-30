@@ -40,14 +40,19 @@ export const ChooseTab: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-bold mb-4">Select a Directory</h1>
-      <p>Selected Directory: {selectedDirectory ?? "None"}</p>
-      <button
-        className="px-4 py-2 mt-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        onClick={handleSelectDirectory}
-      >
-        Choose a Directory
-      </button>
+      <h1 className="text-base font-bold mb-4">Directory:</h1>
+      <div className="flex flex-row">
+        <button
+          className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          onClick={handleSelectDirectory}
+        >
+          Browse
+        </button>
+
+        <p className="flex items-center">
+          {selectedDirectory ?? "No directory selected"}
+        </p>
+      </div>
 
       <div className="mt-8">
         <h1 className="text-xl font-bold mb-4">Files</h1>

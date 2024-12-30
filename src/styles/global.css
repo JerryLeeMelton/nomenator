@@ -38,6 +38,8 @@
   --gray-darker: #687070;
   --gray-darkest: #454b4b;
 
+  --red-primary: #ff1d0b;
+
   /* Global Size Variables ============================= */
 
   --title-bar-height: 40px;
@@ -61,8 +63,4 @@ body,
 input,
 textarea {
   user-select: text;
-}
-
-button {
-  background-color: purple;
 }
