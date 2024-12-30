@@ -40,7 +40,7 @@ export const ChooseTab: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-base font-bold mb-4">Directory:</h1>
+      {/* <h1 className="text-base font-bold mb-4">Directory:</h1> */}
       <div className="flex flex-row">
         <button
           className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600"

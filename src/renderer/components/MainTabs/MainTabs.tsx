@@ -2,6 +2,7 @@ import React from "react"
 import { useAppSelector } from "../../store/hooks"
 import { RootState } from "../../store/store"
 import { useAppDispatch } from "../../store/hooks"
+import "./MainTabs.css"
 
 interface MainTabsProps {
   tabs: string[]
@@ -25,12 +26,12 @@ export const MainTabs: React.FC<MainTabsProps> = ({
   }
 
   return (
-    <div className="bg-gray-200 p-2 flex space-x-4" id="tabs">
+    <div className="main-tabs  flex space-x-4" id="tabs">
       {tabs.map((tab) => {
         return (
           <button
             className={`px-4 py-2 rounded ${
-              activeTab === tab ? "bg-white" : "bg-transparent"
+              activeTab === tab ? "main-tabs-button-active" : "bg-transparent"
             }`}
             onClick={() => setActiveTab(tab)}
             key={`main-tab-${tab}`}

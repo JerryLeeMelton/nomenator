@@ -1,0 +1,29 @@
+:root {
+  --main-tabs-border-radius: 10px;
+}
+
+.main-tabs {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--gray-light);
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.main-tabs button {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  background-color: var(--gray-lightest);
+
+  border-top-left-radius: var(--main-tabs-border-radius);
+  border-top-right-radius: var(--main-tabs-border-radius);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.main-tabs button.main-tabs-button-active {
+  background-color: var(--white);
+}
