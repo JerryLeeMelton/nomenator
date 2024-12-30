@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  /* Colors ============================================ */
   --blue-primary: #0fd4f2;
 
   --blue-light: #47d7fa;
@@ -36,6 +37,21 @@
   --gray-dark: #8d9495;
   --gray-darker: #687070;
   --gray-darkest: #454b4b;
+
+  /* Global Size Variables ============================= */
+
+  --title-bar-height: 40px;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding-top: var(--title-bar-height);
 }
 
 body,
