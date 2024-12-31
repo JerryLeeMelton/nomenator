@@ -146,7 +146,7 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
               <li
                 key={rule.id}
                 onClick={() => handleSelectRule(rule.id)}
-                className={`cursor-pointer px-2 py-1 rounded transition-colors
+                className={`rename-rule-item cursor-pointer px-2 py-1 rounded 
                   ${
                     isSelected
                       ? "bg-blue-500 text-white"
@@ -154,7 +154,8 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
                   }
                 `}
               >
-                {rule.type.toUpperCase()} / ID: {rule.id}
+                {rule.type.toUpperCase()}
+                {/* / ID: {rule.id} */}
               </li>
             )
           })}

@@ -82,12 +82,12 @@ textarea {
 }
 
 .main-window-content-top {
-  height: calc(50% - var(--title-bar-height-half) - var(--main-tabs-height));
+  height: calc(55% - var(--title-bar-height-half) - var(--main-tabs-height));
 }
 .main-window-content-bottom {
   overflow: hidden;
   padding: 2rem;
-  height: calc(50% - var(--title-bar-height-half));
+  height: calc(45% - var(--title-bar-height-half));
 }
 
 /* Buttons ============================================ */

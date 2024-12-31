@@ -1,0 +1,9 @@
+.rename-rule-item {
+  transition: background-color ease-out 50ms;
+  transition: color ease-out 50ms;
+}
+
+.rename-rule-item:hover {
+  transition: background-color ease-out 50ms;
+  transition: color ease-out 50ms;
+}
