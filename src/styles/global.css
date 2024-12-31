@@ -82,10 +82,12 @@ textarea {
 }
 
 .main-window-content-top {
-  height: calc(55% - var(--title-bar-height-half) - var(--main-tabs-height));
+  height: calc(55% - var(--title-bar-height-half));
 }
 .main-window-content-bottom {
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
   height: calc(45% - var(--title-bar-height-half));
 }

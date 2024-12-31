@@ -35,6 +35,7 @@ p.no-directory-selected {
   overflow-y: scroll;
   max-height: 100%;
   border: 1px solid var(--gray-lighter);
+  margin-top: 2rem;
 }
 
 .file-list-item {
