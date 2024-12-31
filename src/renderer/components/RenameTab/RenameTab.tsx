@@ -26,18 +26,6 @@ export const RenameTab: React.FC = () => {
       {/* Main Rename Options Area (Right) */}
       <div className="flex-1 bg-white p-4">
         <RenameRuleOptions renameRuleID={selectedRuleId} />
-
-        {/* Show the auto-updated preview */}
-        <div className="mt-4">
-          <h2 className="font-bold mb-2">Preview Results</h2>
-          {previewResult.map((item, idx) => (
-            <div key={idx} className="flex space-x-2">
-              <span>{item.originalName}</span>
-              <span>→</span>
-              <span>{item.newName}</span>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   )
