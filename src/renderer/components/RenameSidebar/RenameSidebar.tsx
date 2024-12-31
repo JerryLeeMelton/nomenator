@@ -130,7 +130,7 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
         <RenameOperationsMenu
           width={200}
           height={40}
-          headerLabel="Add Rename Operation"
+          headerLabel="Add Operation"
           optionsList={renameOperations}
           onSelect={handleSelectOperation}
           disabled={false}

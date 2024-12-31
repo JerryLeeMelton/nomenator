@@ -19,11 +19,12 @@
   font-size: 1rem;
   color: var(--text-main);
 
-  background-color: var(--background-body);
+  background-color: var(--blue-dark);
+  color: var(--white);
 
-  border: 1px solid var(--ui-button-outline);
-  /* border-radius: var(--btn-border-radius); */
-  border-radius: 0;
+  border-radius: 4px;
+
+  transition: background-color ease-out 50ms;
 }
 .dropdown-wrapper * {
   display: flex;
@@ -39,8 +40,9 @@
 }
 
 .dropdown-header:hover {
+  background-color: var(--blue-darker);
   border-color: var(--ui-button-outline-hover);
-  /* transition: all ease-in-out 100ms; */
+  transition: background-color ease-out 50ms;
 }
 
 .dropdown-header {
@@ -108,7 +110,7 @@
   transition: background-color ease-out 50ms;
 }
 .dropdown-list-item:hover {
-  background-color: var(--blue-darkest);
+  background-color: var(--blue-darker);
   color: var(--white);
   transition: background-color ease-out 50ms;
 }
