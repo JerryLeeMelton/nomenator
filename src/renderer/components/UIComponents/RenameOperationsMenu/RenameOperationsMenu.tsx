@@ -36,7 +36,8 @@ export const RenameOperationsMenu = ({
   const dropdownRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLButtonElement>(null)
 
-  const containerWidth = `${width}px`
+  // const containerWidth = `${width}px`
+  const containerWidth = `$100%`
   const containerHeight = `${height}px`
 
   const handleHeaderClick = () => {
@@ -48,6 +49,7 @@ export const RenameOperationsMenu = ({
     if (wrapperRect && dropdownRef.current) {
       dropdownRef.current.style.top = `${wrapperRect.bottom}px`
       dropdownRef.current.style.left = `${wrapperRect.left}px`
+      dropdownRef.current.style.width = `${wrapperRect.width}px`
     }
   }
 
@@ -101,7 +103,7 @@ export const RenameOperationsMenu = ({
               : "dropdown-list-container hidden"
           }
           ref={dropdownRef}
-          style={{ width: containerWidth }}
+          // style={{ width: containerWidth }}
         >
           {optionsList.map((option, index) => (
             <button

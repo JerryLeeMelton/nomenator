@@ -5,6 +5,7 @@
 
 .dropdown-wrapper {
   display: flex;
+  width: 100%;
   flex-direction: column;
 }
 .dropdown-wrapper .dropdown-header {
@@ -31,6 +32,7 @@
 }
 
 .dropdown-wrapper button {
+  width: 100%;
   height: var(--dropdown-menu-height);
 }
 
@@ -46,14 +48,11 @@
 }
 
 .dropdown-header {
+  width: 100%;
   cursor: pointer;
 }
 
 .dropdown-list-container {
-  /* position: absolute;
-  top: var(--dropdown-menu-height);
-  z-index: 100; */
-
   position: fixed;
   z-index: 1000;
 

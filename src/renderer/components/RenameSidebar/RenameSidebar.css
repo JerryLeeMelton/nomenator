@@ -7,3 +7,8 @@
   transition: background-color ease-out 50ms;
   transition: color ease-out 50ms;
 }
+
+.rules-list-container {
+  padding: 0.5rem;
+  border: 1px solid red;
+}

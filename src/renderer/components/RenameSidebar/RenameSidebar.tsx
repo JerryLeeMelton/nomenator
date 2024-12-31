@@ -2,6 +2,7 @@ import React, { useCallback } from "react"
 import { v4 as uuidv4 } from "uuid"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { RootState } from "../../store/store"
+import "./RenameSidebar.css"
 
 import {
   addRule,
@@ -138,7 +139,7 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
       </div>
 
       {/* Rules List */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="rules-list-container flex-1 overflow-y-auto">
         <ul className="space-y-1">
           {rules.map((rule) => {
             const isSelected = rule.id === selectedRuleId
