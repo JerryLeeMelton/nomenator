@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { RootState } from "../../store/store"
 import { pickDirectoryThunk, setSelectedDirectory } from "../../store/appSlice"
 import { fetchFilesThunk, toggleFileSelection } from "../../store/fileSlice"
+import "./ChooseTab.css"
 
 export const ChooseTab: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -39,38 +40,42 @@ export const ChooseTab: React.FC = () => {
   }, [selectedDirectory, dispatch])
 
   return (
-    <div>
+    <div className="choose-tab-container">
       {/* <h1 className="text-base font-bold mb-4">Directory:</h1> */}
-      <div className="flex flex-row">
-        <button
-          className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          onClick={handleSelectDirectory}
-        >
+      <div className="directory-controls-container flex flex-row">
+        <button className="button-primary" onClick={handleSelectDirectory}>
           Browse
         </button>
 
-        <p className="flex items-center">
-          {selectedDirectory ?? "No directory selected"}
-        </p>
+        <div className="selected-directory-container flex flex-row">
+          <p
+            className={
+              selectedDirectory == null
+                ? "flex items-center no-directory-selected"
+                : "flex items-center"
+            }
+          >
+            {selectedDirectory ?? "No directory selected"}
+          </p>
+        </div>
+
+        <button
+          className="button-primary"
+          onClick={handleListFiles}
+          disabled={selectedDirectory === null}
+        >
+          Refresh
+        </button>
       </div>
 
-      <div className="mt-8">
-        <h1 className="text-xl font-bold mb-4">Files</h1>
+      <div className="file-list-outer-container">
+        {/* <h1 className="text-xl font-bold mb-4">Files</h1> */}
         {selectedDirectory ? (
-          <div>
-            <button
-              className="px-4 py-2 mt-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-              onClick={handleListFiles}
-            >
-              Refresh
-            </button>
+          <div className="file-list-container">
             {filesStatus === "succeeded" && (
-              <ul className="list-none mt-2">
+              <ul className="list-none">
                 {files.map((file) => (
-                  <li
-                    key={file.name}
-                    className="flex items-center space-x-2 py-1"
-                  >
+                  <li key={file.name} className="file-list-item">
                     <input
                       type="checkbox"
                       checked={selectedFiles.includes(file.name)}

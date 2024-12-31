@@ -1,6 +1,7 @@
 import React from "react"
 import { useAppSelector } from "../../store/hooks"
 import { RootState } from "../../store/store"
+import "./SelectedFilesTable.css"
 
 export const SelectedFilesTable: React.FC = () => {
   const selectedFiles = useAppSelector(
@@ -15,9 +16,9 @@ export const SelectedFilesTable: React.FC = () => {
   }
 
   return (
-    <div>
-      <h2 className="text-lg font-bold mb-4">Selected Files</h2>
-      <table className="w-full border-collapse">
+    <div className="selected-files-table-container">
+      {/* <h2 className="text-lg font-bold mb-4">Selected Files</h2> */}
+      <table className="selected-files-table w-full border-collapse">
         <thead>
           <tr className="border-b border-gray-300 bg-gray-100">
             <th className="text-left p-2">Original Name</th>

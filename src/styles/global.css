@@ -43,6 +43,7 @@
   /* Global Size Variables ============================= */
 
   --title-bar-height: 40px;
+  --title-bar-height-half: calc(var(--title-bar-height) / 2);
 }
 
 html,
@@ -63,4 +64,46 @@ body,
 input,
 textarea {
   user-select: text;
+}
+
+/* Main Window ============================================ */
+
+.main-window-container {
+  height: 100vh;
+  background-color: var(--white);
+}
+
+.main-controls-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.main-window-content-top {
+  height: calc(50% - var(--title-bar-height-half) - var(--main-tabs-height));
+}
+.main-window-content-bottom {
+  overflow: hidden;
+  padding: 2rem;
+  height: calc(50% - var(--title-bar-height-half));
+}
+
+/* Buttons ============================================ */
+
+.button-primary {
+  background-color: var(--blue-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  color: var(--white);
+  transition: background-color 50ms ease-out;
+}
+.button-primary:hover {
+  background-color: var(--blue-darkest);
+  transition: background-color 50ms ease-out;
+}
+.button-primary:disabled {
+  background-color: var(--gray-primary);
+  cursor: not-allowed;
 }

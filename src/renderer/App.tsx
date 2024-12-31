@@ -43,23 +43,23 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="main-window-container h-full flex flex-col">
       <TitleBar />
       {/* Top Half */}
-      <div className="h-1/2 flex flex-col">
+      <div className="flex flex-col main-window-content-top">
         <MainTabs
           tabs={tabs}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
-        <div className="flex-1 p-4 overflow-auto">
+        <div className="flex-1 p-4 overflow-auto main-controls-container">
           {activeTab === "choose" && <ChooseTab />}
           {activeTab === "rename" && <RenameTab />}
         </div>
       </div>
 
       {/* Bottom Half: Selected Files Table */}
-      <div className="h-1/2 overflow-auto border-t border-gray-300 p-4">
+      <div className="overflow-auto border-t border-gray-300 p-4 main-window-content-bottom">
         <SelectedFilesTable />
       </div>
     </div>

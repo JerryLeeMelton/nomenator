@@ -1,0 +1,6 @@
+.selected-files-table-container {
+  max-height: 100%;
+  overflow-y: scroll;
+  border: 1px solid var(--gray-lighter);
+  border-radius: 0.25rem;
+}
