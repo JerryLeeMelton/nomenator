@@ -13,7 +13,7 @@ import {
   applyRenameThunk,
 } from "../../store/renameSlice"
 
-import { mdiChevronUp, mdiChevronDown } from "@mdi/js"
+import { mdiChevronUp, mdiChevronDown, mdiDelete } from "@mdi/js"
 import Icon from "@mdi/react"
 
 import {
@@ -125,7 +125,7 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
   }
 
   return (
-    <div className="flex flex-col h-full p-4">
+    <div className="rename-sidebar-container flex flex-col h-full p-4">
       {/* Dropdown for adding a rename operation */}
       <div className="mb-4">
         <RenameOperationsMenu
@@ -164,30 +164,24 @@ export const RenameSidebar: React.FC<RenameSidebarProps> = () => {
       </div>
 
       {/* Reorder & Delete Buttons */}
-      <div className="mt-4 flex items-center space-x-2">
+      <div className="rename-sidebar-buttons-container mt-4 flex items-center space-x-2">
         <button
           onClick={() => handleReorderRules("up")}
-          className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded transition-colors"
+          className="reorder-button"
         >
-          <Icon path={mdiChevronUp} size={0.8} />
+          <Icon path={mdiChevronUp} size={0.9} />
         </button>
         <button
           onClick={() => handleReorderRules("down")}
-          className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded transition-colors"
+          className="reorder-button"
         >
-          <Icon path={mdiChevronDown} size={0.8} />
+          <Icon path={mdiChevronDown} size={0.9} />
         </button>
-        <button
-          onClick={handleDeleteRule}
-          className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition-colors ml-auto"
-        >
-          Delete
+        <button onClick={handleDeleteRule} className="delete-rule-button">
+          <Icon path={mdiDelete} size={0.8} />
         </button>
-        <button
-          className="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded mt-4"
-          onClick={handleApplyRename}
-        >
-          Apply Rename
+        <button className="apply-rename-button" onClick={handleApplyRename}>
+          Apply
         </button>
       </div>
     </div>

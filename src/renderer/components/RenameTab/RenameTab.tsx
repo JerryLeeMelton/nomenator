@@ -19,7 +19,7 @@ export const RenameTab: React.FC = () => {
   return (
     <div className="flex w-full h-full">
       {/* Left Sidebar */}
-      <div className="w-64 bg-gray-100 border-r border-gray-300">
+      <div className="w-64 bg-gray-100 border-r border-gray-300 min-w-80">
         <RenameSidebar />
       </div>
 

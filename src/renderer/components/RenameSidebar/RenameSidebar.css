@@ -1,3 +1,6 @@
+.rename-sidebar-container {
+}
+
 .rename-rule-item {
   transition: background-color ease-out 50ms;
   transition: color ease-out 50ms;
@@ -11,4 +14,54 @@
 .rules-list-container {
   padding: 0.5rem;
   border: 1px solid var(--gray-light);
+}
+
+.rename-sidebar-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.rename-sidebar-buttons-container button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  color: var(--white);
+
+  height: 100%;
+
+  margin: 0rem;
+  gap: 0.5rem;
+}
+
+.reorder-button {
+  background-color: var(--gray-primary);
+
+  transition: background-color 50ms ease-out;
+}
+.reorder-button:hover {
+  background-color: var(--gray-dark);
+  transition: background-color 50ms ease-out;
+}
+
+.delete-rule-button {
+  background-color: var(--red-primary);
+  transition: background-color 50ms ease-out;
+}
+.delete-rule-button:hover {
+  background-color: var(--red-dark);
+  transition: background-color 50ms ease-out;
+}
+
+.apply-rename-button {
+  background-color: var(--blue-dark);
+  transition: background-color 50ms ease-out;
+}
+.apply-rename-button:hover {
+  background-color: var(--blue-darker);
+  transition: background-color 50ms ease-out;
 }
