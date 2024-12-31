@@ -10,5 +10,5 @@
 
 .rules-list-container {
   padding: 0.5rem;
-  border: 1px solid red;
+  border: 1px solid var(--gray-light);
 }
